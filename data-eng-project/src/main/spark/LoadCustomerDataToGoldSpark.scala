@@ -19,7 +19,7 @@ object LoadCustomerDataToGoldSpark extends SparkJob {
     //check if data is present in gold layer or not
     //if not then consider it as first run
     try{
-      customer_dim_gold_df = spark.read.format("csv").option("header", "true").load(customer_gold_path)
+      customer_dim_gold_df = spark.read.format("parquet").load(customer_gold_path)
 
     } catch {
       case ex: AnalysisException =>
@@ -72,6 +72,8 @@ object LoadCustomerDataToGoldSpark extends SparkJob {
       .mode("overwrite")
       .option("compression", "snappy")
       .save(customer_gold_path)
+
+    spark.close()
 
   }
 

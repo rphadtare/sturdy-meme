@@ -1,11 +1,6 @@
 # sturdy-meme
 Repository to demonstrate sample data engineering assignment
 
-<h1 align="center">Hi 👋, I'm Rohit Phadtare</h1>
-<h3 align="center">A passionate data engineer from India</h3>
-
-- 🔭 I’m currently working on **Data Engineering Assignment**
-
 # Data Engineering on retail dataset
 In this project, we will perform operations on raw reatil datasets to acheive results for analytic queries as part of assignment
 
@@ -13,8 +8,8 @@ In this project, we will perform operations on raw reatil datasets to acheive re
 - [Assumptions](#assumptions)
 - [Application Flow](#application-flow)
 - [Data model diagram](#data-model-diagram)
-- [How to execute jobs](#execute-jobs)
-- [Analytic_queries with results](#results)
+- [How to execute jobs](#how-to-execute-jobs)
+- [Analytic queries with results](#analytic_queries-with-results)
 
 ***
 
@@ -276,4 +271,42 @@ Layer wise attribute details
 
 ### Data model diagram
 
-![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+
+---
+
+## How to execute jobs
+
+- To get required data in final layer we have some dependency to process data
+- I'm processing dimension data first. As it will be used for validation step in loading of fact data
+- Lets look out directory structure 
+  - ![img.png](img.png)
+  - As mentioned above we need to process customer data first
+    - There are two jobs which needs to execute  
+      - `LoadCustomerDataToSilverSpark (package - main.spark.bronze_to_silver)`
+      - `LoadCustomerDataToGoldSpark (package - main.spark.silver_to_gold)`
+    - Note - as we are executing locally, you can use any IDE to check out code and execute them
+    - We can check if data is populated in directory 'gold/customer_dim'
+      - ![img_1.png](img_1.png)
+  - Now similarly we need to execute jobs to process products data
+    - `LoadProductsDataToSilverSpark (package - main.spark.bronze_to_silver)`
+    - `LoadProductsDataToGoldSpark (package - main.spark.silver_to_gold)`
+  - Then finally execute jobs to process orders data
+    - `LoadOrdersDataToSilverSpark (package - main.spark.bronze_to_silver)`
+    - `LoadOrdersDataToGoldSpark (package - main.spark.silver_to_gold)`
+
+---
+
+## Analytic_queries with results
+
+- Once data is populated in final layer i.e. 'gold'. 
+  We can execute Task jobs to provide results for analytic queries mentioned above [here](#background)
+
+    ## Task 1 - Top 10 countries with the most number of customers
+        Execute `Task1` job to see results (package - spark.analytics)
+        Result
+    ![img_4.png](img_4.png)
+
+    ### similarly we can execute remaining Task jobs from package - spark.analytics to get remaining results
+
+---

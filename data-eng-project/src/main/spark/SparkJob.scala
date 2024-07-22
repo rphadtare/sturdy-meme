@@ -18,9 +18,9 @@ class SparkJob {
   val products_silver_path = s"$silver_layer/products/"
   val orders_silver_path = s"$silver_layer/orders/"
 
-  val customer_gold_path = s"$gold_layer/customer/"
-  val products_gold_path = s"$gold_layer/products/"
-  val orders_gold_path = s"$gold_layer/orders/"
+  val customer_gold_path = s"$gold_layer/customer_dim/"
+  val products_gold_path = s"$gold_layer/products_dim/"
+  val orders_gold_path = s"$gold_layer/orders_fact/"
 
   private def getSparkSession() : SparkSession = {
     val spark = SparkSession.builder().master("local").getOrCreate()

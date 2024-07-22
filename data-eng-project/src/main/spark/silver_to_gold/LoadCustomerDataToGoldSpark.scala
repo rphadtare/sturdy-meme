@@ -1,7 +1,8 @@
-package spark
+package spark.silver_to_gold
 
 import org.apache.spark.sql.AnalysisException
 import org.apache.spark.sql.functions._
+import spark.SparkJob
 
 object LoadCustomerDataToGoldSpark extends SparkJob {
 

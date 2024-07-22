@@ -22,6 +22,11 @@ class SparkJob {
   val products_gold_path = s"$gold_layer/products_dim/"
   val orders_gold_path = s"$gold_layer/orders_fact/"
 
+  val task1_result_path =  s"$bronze_layer/task1/"
+  val task2_result_path =  s"$bronze_layer/task2/"
+  val task3_result_path =  s"$bronze_layer/task3/"
+  val task4_result_path =  s"$bronze_layer/task4/"
+
   private def getSparkSession() : SparkSession = {
     val spark = SparkSession.builder().master("local").getOrCreate()
     spark.sparkContext.setLogLevel("Error")

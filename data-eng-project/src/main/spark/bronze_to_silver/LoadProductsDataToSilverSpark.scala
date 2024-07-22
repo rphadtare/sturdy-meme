@@ -1,8 +1,9 @@
-package spark
+package spark.bronze_to_silver
 
-import org.apache.spark.sql.functions._
 import org.apache.spark.sql.expressions._
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
+import spark.SparkJob
 
 object LoadProductsDataToSilverSpark extends SparkJob {
 
